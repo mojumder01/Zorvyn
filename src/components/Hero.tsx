@@ -13,7 +13,7 @@ export function Hero() {
             Look sharp.
           </h1>
           <p className="mt-4 max-w-md text-slate-300">
-            Everyday sneakers and denim made for Dhaka streets — light, comfortable and built to last.
+            Sneakers, denim and festive dresses for the whole family — comfortable, stylish and made for Dhaka life.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a href="#shop" className="rounded-full bg-brand px-6 py-3 font-semibold text-white hover:bg-brand-dark">

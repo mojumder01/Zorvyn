@@ -1,34 +1,36 @@
 import { ArrowRight } from 'lucide-react';
-import { PRODUCTS, type Category } from '../../data/products';
+import { CATEGORIES, PRODUCTS, type Category } from '../../data/products';
 
-const TILES: { id: Category; title: string; text: string; image: string }[] = [
-  { id: 'sneakers', title: 'Sneakers', text: 'Light runners and trainers', image: 'products/aero-mesh-trainer.jpg' },
-  { id: 'jeans', title: 'Jeans', text: 'Straight and tapered denim', image: 'products/classic-straight-jeans.jpg' },
-];
+const IMAGES: Record<Category, string> = {
+  sneakers: 'products/aero-mesh-trainer.jpg',
+  jeans: 'products/classic-straight-jeans.jpg',
+  women: 'products/floral-garden-dress.jpg',
+  kids: 'products/golden-check-lehenga-model.jpg',
+};
 
 export function CategoryTiles({ onPick }: { onPick: (category: Category) => void }) {
+  const tiles = CATEGORIES.filter((c): c is { id: Category; label: string } => c.id !== 'all');
   return (
     <section aria-labelledby="categories-title" className="mx-auto max-w-6xl px-4 pt-12">
       <h2 id="categories-title" className="text-2xl font-bold">
         Shop by category
       </h2>
-      <div className="mt-5 grid gap-4 sm:grid-cols-2">
-        {TILES.map((tile) => (
+      <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+        {tiles.map((tile) => (
           <button
             key={tile.id}
             type="button"
             onClick={() => onPick(tile.id)}
-            className="group relative flex h-44 items-center overflow-hidden rounded-3xl border border-slate-200 bg-white text-left shadow-sm transition hover:shadow-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none sm:h-52"
+            className="group relative aspect-[4/5] overflow-hidden rounded-3xl bg-slate-200 text-left shadow-sm transition hover:shadow-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none"
           >
-            <div className="relative z-10 flex max-w-[60%] flex-col gap-1 p-6">
-              <span className="text-2xl font-extrabold">{tile.title}</span>
-              <span className="text-sm text-slate-500">{tile.text}</span>
-              <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-dark">
+            <img src={IMAGES[tile.id]} alt="" loading="lazy" className="absolute inset-0 size-full object-cover transition duration-300 group-hover:scale-105" />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/85 via-ink/40 to-transparent p-4 pt-12 text-white">
+              <span className="block text-xl font-extrabold">{tile.label}</span>
+              <span className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-orange-200">
                 {PRODUCTS.filter((p) => p.category === tile.id).length} styles
                 <ArrowRight className="size-4 transition group-hover:translate-x-1" aria-hidden />
               </span>
             </div>
-            <img src={tile.image} alt="" loading="lazy" className="absolute right-0 h-full w-2/5 object-contain sm:w-1/2 transition duration-300 group-hover:scale-105" />
           </button>
         ))}
       </div>

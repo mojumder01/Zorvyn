@@ -4,7 +4,6 @@ const NAV = [
   ['Shop', '#shop'],
   ['Deals', '#deals'],
   ['Reviews', '#reviews'],
-  ['Size guide', '#size-guide'],
   ['FAQ', '#faq'],
 ] as const;
 
@@ -33,7 +32,7 @@ export function Header({ query, onQuery, cartCount, onOpenCart }: HeaderProps) {
             type="search"
             value={query}
             onChange={(e) => onQuery(e.target.value)}
-            placeholder="Search sneakers, jeans…"
+            placeholder="Search shoes, jeans, dresses…"
             className="w-full rounded-full border border-slate-200 bg-slate-50 py-2 pr-3 pl-9 text-sm outline-none focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/20"
           />
         </label>

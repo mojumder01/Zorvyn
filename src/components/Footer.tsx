@@ -1,6 +1,6 @@
 const COLUMNS = [
   { title: 'Shop', links: [['All products', '#shop'], ['Deal of the week', '#deals'], ['Reviews', '#reviews']] },
-  { title: 'Help', links: [['Size guide', '#size-guide'], ['FAQ', '#faq'], ['Delivery & exchange', '#faq']] },
+  { title: 'Help', links: [['FAQ', '#faq'], ['Delivery & exchange', '#faq'], ['Size help', '#faq']] },
 ] as const;
 
 export function Footer() {
@@ -12,7 +12,7 @@ export function Footer() {
             <span className="grid size-8 place-items-center rounded-lg bg-ink text-brand">Z</span> Zorvyn
           </p>
           <p className="mt-3 max-w-sm text-sm text-slate-500">
-            Everyday sneakers and denim. This is a demo e-commerce store — products, prices, reviews and orders are samples.
+            Sneakers, denim and dresses for the whole family. This is a demo e-commerce store — products, prices, reviews and orders are samples.
           </p>
         </div>
         {COLUMNS.map((col) => (

@@ -1,5 +1,5 @@
 /** Demo catalogue. Prices are in Bangladeshi taka (৳) and are sample values. */
-export type Category = 'sneakers' | 'jeans';
+export type Category = 'sneakers' | 'jeans' | 'women' | 'kids';
 
 export interface Product {
   id: string;
@@ -9,6 +9,8 @@ export interface Product {
   /** Price before the sale, when the product is discounted. */
   oldPrice?: number;
   image: string;
+  /** More photos shown in the product details. */
+  gallery?: string[];
   colour: string;
   sizes: string[];
   rating: number;
@@ -20,11 +22,46 @@ export interface Product {
 
 const SHOE_SIZES = ['39', '40', '41', '42', '43', '44'];
 const JEAN_SIZES = ['30', '32', '34', '36', '38'];
+const WOMEN_SIZES = ['S', 'M', 'L', 'XL'];
+const KIDS_SIZES = ['2-3Y', '4-5Y', '6-7Y', '8-9Y'];
+
+export interface SizeChart {
+  /** Shown above the size buttons, e.g. "Size (EU)". */
+  label: string;
+  headers: string[];
+  rows: string[][];
+}
+
+/** Size chart shown in each product's details, per category. */
+export const SIZE_CHARTS: Record<Category, SizeChart> = {
+  sneakers: {
+    label: 'Size (EU)',
+    headers: ['EU size', 'Foot length (cm)'],
+    rows: [['39', '24.5'], ['40', '25.0'], ['41', '25.5'], ['42', '26.5'], ['43', '27.0'], ['44', '28.0']],
+  },
+  jeans: {
+    label: 'Size (waist, inches)',
+    headers: ['Waist size', 'Waist (cm)', 'Hip (cm)'],
+    rows: [['30', '76', '94'], ['32', '81', '99'], ['34', '86', '104'], ['36', '91', '109'], ['38', '97', '114']],
+  },
+  women: {
+    label: 'Size',
+    headers: ['Size', 'Bust (in)', 'Waist (in)', 'Length (in)'],
+    rows: [['S', '34', '28', '44'], ['M', '36', '30', '45'], ['L', '38', '32', '46'], ['XL', '40', '34', '47']],
+  },
+  kids: {
+    label: 'Size (age)',
+    headers: ['Age', 'Height (cm)', 'Chest (in)', 'Length (in)'],
+    rows: [['2-3Y', '92–98', '21', '22'], ['4-5Y', '104–110', '22.5', '25'], ['6-7Y', '116–122', '24', '28'], ['8-9Y', '128–134', '25.5', '31']],
+  },
+};
 
 export const CATEGORIES: { id: Category | 'all'; label: string }[] = [
   { id: 'all', label: 'All' },
   { id: 'sneakers', label: 'Sneakers' },
   { id: 'jeans', label: 'Jeans' },
+  { id: 'women', label: 'Women' },
+  { id: 'kids', label: 'Kids' },
 ];
 
 export const PRODUCTS: Product[] = [
@@ -96,6 +133,49 @@ export const PRODUCTS: Product[] = [
     reviews: 97,
     description: 'A sharp tapered jean in deep indigo — smart enough for the office, relaxed enough for the weekend.',
     details: ['99% cotton, 1% elastane', 'Tapered leg, regular rise', 'Deep indigo dye', 'Machine washable'],
+  },
+  {
+    id: 'floral-garden-dress',
+    name: 'Floral Garden Dress',
+    category: 'women',
+    price: 2190,
+    image: 'products/floral-garden-dress.jpg',
+    colour: 'Navy & Black floral',
+    sizes: WOMEN_SIZES,
+    rating: 4.6,
+    reviews: 74,
+    badge: 'New',
+    description: 'A flowing floral dress with a fitted waist — light and easy for summer days, outings and parties.',
+    details: ['Soft breathable crepe', 'Fitted waist, flared skirt', 'Midi length', 'Gentle hand wash'],
+  },
+  {
+    id: 'golden-check-lehenga',
+    name: 'Golden Check Lehenga Set',
+    category: 'kids',
+    price: 2890,
+    oldPrice: 3290,
+    image: 'products/golden-check-lehenga.jpg',
+    gallery: ['products/golden-check-lehenga-model.jpg'],
+    colour: 'Leaf Green / Gold',
+    sizes: KIDS_SIZES,
+    rating: 4.8,
+    reviews: 58,
+    badge: 'Festive',
+    description: 'A festive two-piece set for girls: an embroidered green top and a pleated checked skirt with a golden border.',
+    details: ['Sleeveless top with mirror embroidery', 'Pleated checked skirt, gold border', 'Tie-up waist with tassels', 'Soft cotton-silk blend'],
+  },
+  {
+    id: 'princess-satin-gown',
+    name: 'Princess Satin Gown',
+    category: 'kids',
+    price: 4490,
+    image: 'products/princess-satin-gown.jpg',
+    colour: 'Ice Blue / Peach',
+    sizes: KIDS_SIZES,
+    rating: 4.7,
+    reviews: 31,
+    description: 'A fairy-tale satin gown with a peach bodice and a gathered ice-blue skirt — made for weddings, birthdays and photo days.',
+    details: ['Satin skirt with ruched gathers', 'Corset-style bodice with soft lining', 'Long flowing train', 'Tiara and umbrella not included'],
   },
 ];
 

@@ -14,7 +14,6 @@ import { Faq } from './components/sections/Faq';
 import { Features } from './components/sections/Features';
 import { Newsletter } from './components/sections/Newsletter';
 import { Reviews } from './components/sections/Reviews';
-import { SizeGuide } from './components/sections/SizeGuide';
 import { CATEGORIES, PRODUCTS, type Category, type Product } from './data/products';
 
 /** The discounted product is the weekly deal. */
@@ -150,7 +149,6 @@ export function App() {
         <DealBanner product={dealProduct} onOpen={() => setSelected(dealProduct)} />
         <Features />
         <Reviews />
-        <SizeGuide />
         <Faq />
         <Newsletter />
       </main>
