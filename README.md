@@ -12,6 +12,7 @@ A demo e-commerce store for sneakers and denim — built with React, TypeScript,
 - Product details with size and quantity
 - Cart drawer, saved in the browser (localStorage)
 - Checkout form with Bangladeshi mobile-number check, delivery area fee and an order confirmation
+- Shop by category, deal of the week with countdown, reviews, size guide, FAQ and a newsletter sign-up (demo)
 - Responsive, keyboard friendly (native `<dialog>`)
 
 ## Run locally

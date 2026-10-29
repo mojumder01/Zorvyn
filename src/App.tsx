@@ -7,7 +7,18 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { ProductCard } from './components/ProductCard';
 import { ProductDialog } from './components/ProductDialog';
+import { Footer } from './components/Footer';
+import { CategoryTiles } from './components/sections/CategoryTiles';
+import { DealBanner } from './components/sections/DealBanner';
+import { Faq } from './components/sections/Faq';
+import { Features } from './components/sections/Features';
+import { Newsletter } from './components/sections/Newsletter';
+import { Reviews } from './components/sections/Reviews';
+import { SizeGuide } from './components/sections/SizeGuide';
 import { CATEGORIES, PRODUCTS, type Category, type Product } from './data/products';
+
+/** The discounted product is the weekly deal. */
+const dealProduct = PRODUCTS.find((p) => p.oldPrice) ?? PRODUCTS[0];
 
 type Sort = 'featured' | 'price-asc' | 'price-desc' | 'rating';
 
@@ -67,8 +78,14 @@ export function App() {
 
       <main className="flex-1">
         <Hero />
+        <CategoryTiles
+          onPick={(c) => {
+            setCategory(c);
+            document.getElementById('shop')?.scrollIntoView({ block: 'start' });
+          }}
+        />
 
-        <section id="shop" className="mx-auto max-w-6xl scroll-mt-28 px-4 py-10">
+        <section id="shop" className="mx-auto max-w-6xl scroll-mt-36 px-4 py-10">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="text-2xl font-bold">Shop the collection</h2>
@@ -129,21 +146,16 @@ export function App() {
             </div>
           )}
         </section>
+
+        <DealBanner product={dealProduct} onOpen={() => setSelected(dealProduct)} />
+        <Features />
+        <Reviews />
+        <SizeGuide />
+        <Faq />
+        <Newsletter />
       </main>
 
-      <footer className="border-t border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-sm text-slate-500 sm:flex-row sm:justify-between">
-          <p>
-            <span className="font-semibold text-ink">Zorvyn</span> — a demo e-commerce store. Products, prices and orders are samples.
-          </p>
-          <p>
-            Built by{' '}
-            <a href="https://mojumder01.github.io/muntasir_Portfolio/" className="font-medium text-brand-dark underline-offset-2 hover:underline">
-              Md Muntasir Mamun Mojumder
-            </a>
-          </p>
-        </div>
-      </footer>
+      <Footer />
 
       <ProductDialog product={selected} onClose={() => setSelected(null)} onAdd={addToCart} />
       <CartDrawer

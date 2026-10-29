@@ -1,5 +1,13 @@
 import { Search, ShoppingBag } from 'lucide-react';
 
+const NAV = [
+  ['Shop', '#shop'],
+  ['Deals', '#deals'],
+  ['Reviews', '#reviews'],
+  ['Size guide', '#size-guide'],
+  ['FAQ', '#faq'],
+] as const;
+
 interface HeaderProps {
   query: string;
   onQuery: (value: string) => void;
@@ -43,6 +51,17 @@ export function Header({ query, onQuery, cartCount, onOpenCart }: HeaderProps) {
           )}
         </button>
       </div>
+      <nav aria-label="Sections" className="mx-auto max-w-6xl overflow-x-auto px-4">
+        <ul className="flex gap-5 pb-2.5 text-sm font-medium whitespace-nowrap text-slate-600">
+          {NAV.map(([label, href]) => (
+            <li key={href}>
+              <a href={href} className="hover:text-brand-dark">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }
