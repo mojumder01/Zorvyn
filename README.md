@@ -36,3 +36,7 @@ Every push to `main` builds the site and publishes it to GitHub Pages
 ## Edit products
 
 Products live in `src/data/products.ts`; photos in `public/products/` (square, about 1000×1000 px).
+
+## Licence
+
+© 2026 Md Muntasir Mamun Mojumder. All rights reserved. This code is public for viewing only — copying, reuse, redistribution or resale is not allowed without written permission. See [LICENSE](LICENSE).

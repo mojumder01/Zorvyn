@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "Zorvyn — a demo e-commerce store for sneakers and denim (no real orders or payments).",
+  "license": "UNLICENSED",
   "type": "module",
   "scripts": {
     "dev": "vite",
